@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import springSecurity.models.User;
 import springSecurity.repositories.UserRepository;
-import springSecurity.security.UsersDetails;
+import springSecurity.security.UserDetailsImp;
 
 import java.util.Optional;
 
@@ -26,6 +26,6 @@ public class UsersDetailsService implements UserDetailsService {
         if (person.isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
         }
-        return new UsersDetails(person.get());
+        return new UserDetailsImp(person.get());
     }
 }

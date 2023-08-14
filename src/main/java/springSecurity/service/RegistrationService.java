@@ -28,9 +28,9 @@ public class RegistrationService {
     @Transactional
     public void register(User person) {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
-        Optional<Role> roleUser = roleRepository.getRoleByName("ROLE_USER");
-        List<Optional<Role>> userRole = new ArrayList<>();
-        userRole.add(roleUser);
+//        Optional<Role> roleUser = roleRepository.getRoleByName("ROLE_USER");
+//        List<Optional<Role>> userRole = new ArrayList<>();
+//        userRole.add(roleUser);
 
         System.out.println("person" + person.getRole());
 

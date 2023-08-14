@@ -33,6 +33,4 @@ public class UsersController {
         System.out.println(principal.getName());
         return "users/user";
     }
-
-
 }
