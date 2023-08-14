@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>All users</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid" style="background-color: #282828">
+            <h4>
+                <form class="navbar-form navbar-left">
+                    <strong><span style="color: white" th:text="${email}">VALUE</span></strong>
+                    <span style="color: white" th:text="${' with roles: ' + roles}">VALUE</span>
+                </form>
+            </h4>
+            <div class="nav navbar-nav navbar-right">
+                <form action="/logout">
+                    <button style="color: gray" type="submit" class="btn btn-link">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<header>
+    <hr>
+    <br>
+    <form th:action="@{/logout}" th:method="POST">
+        <button class="btn btn-outline-primary">
+            <input th:type="submit" th:value="Logout"/>
+        </button>
+    </form>
+    <br>
+    <hr>
+    <br>
+</header>
+<h1>All Users</h1>
+<div>
+    <ul>
+        <li th:each="user : ${users}">
+            <p th:text="${user.getId()}"/>
+            <h4>
+                <a th:href="@{{id}(id=${user.getId()})}"
+                   th:text="${user.getName() + ', '
+                   + user.getUsername()+ ', '
+                   + user.getEmail()}">
+                    user
+                </a>
+            </h4>
+        </li>
+    </ul>
+
+    <br/>
+    <hr/>
+    <hr/>
+</div>
+</body>
+</html>
