@@ -20,12 +20,6 @@ public class UserDetailsImp implements UserDetails {
         return (Collection<? extends GrantedAuthority>) this.person.getRole();
     }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//
-//        return this.person.getRole();
-//    }
-
     @Override
     public String getPassword() {
         return this.person.getPassword();

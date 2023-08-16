@@ -1,32 +1,14 @@
 package springSecurity.models;
 
-//import jakarta.persistence.Entity;
-//import org.hibernate.annotations.Table;
-//
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-//import javax.validation.constraints.Email;
-//import javax.validation.constraints.NotEmpty;
-//import javax.validation.constraints.Size;
-//import java.util.Objects;
-
-//import jakarta.persistence.Column;
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.*;
-//import jakarta.validation.constraints.Email;
-//import jakarta.validation.constraints.NotEmpty;
-//import jakarta.validation.constraints.Size;
 
 import java.util.*;
-
 
 @Entity
 @Table(name = "users")
@@ -53,33 +35,10 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-
     @ManyToMany(cascade = {CascadeType.MERGE})
     @Fetch(FetchMode.JOIN)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "user_role",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Collection<Role> roles;
-
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "user_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Collection<Role> roles;
-//
-//
-//    @CollectionTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")})
-//
-//    @ElementCollection(fetch = FetchType.EAGER)
-//
-//    @Enumerated(EnumType.STRING)
-//
-//    private Set<Role> roles = new HashSet<>();
 
     @Size(min = 2, message = "Password should min 2 characters")
     @Column(name = "password")
@@ -94,16 +53,6 @@ public class User {
         this.username = username;
         this.email = email;
     }
-
-//    public String getAllRoles() {
-//        String res = "";
-//        List<Role> allRoles = getRole();
-//        for(Role role: allRoles) {
-//            res = res.concat(role.getName()
-//                    .concat(" "));
-//        }
-//        return res;
-//      }
 
     public long getId() {
         return id;
@@ -177,12 +126,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + username + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "User{" + "id=" + id + ", name='" + name + '\'' + ", surname='" + username + '\'' + ", email='" + email + '\'' + '}';
     }
 
 }

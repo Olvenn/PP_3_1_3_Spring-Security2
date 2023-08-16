@@ -10,9 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import springSecurity.service.UsersDetailsService;
 
-/**
- * @author Neil Alishev
- */
+
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -30,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // конфигурируем авторизацию
 
         http.authorizeRequests()
-                .antMatchers("/admin", "/{id}/edit").hasRole("ADMIN")
-                .antMatchers("/auth/login", "/admin","/auth/registration", "/error").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/auth/login",  "/auth/registration", "/error").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin()

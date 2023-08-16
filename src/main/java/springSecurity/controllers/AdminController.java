@@ -72,7 +72,7 @@ public class AdminController {
     }
 
     @GetMapping()
-    public String adminPage() {
+    public String showAdminPage() {
         return "auth/admin";
     }
 }

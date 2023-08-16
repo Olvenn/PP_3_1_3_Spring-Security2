@@ -5,13 +5,12 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "roles")
 public class Role  implements GrantedAuthority {
-//public class Role {
+//    public class Role  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

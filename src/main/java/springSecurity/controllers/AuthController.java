@@ -27,13 +27,13 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String showLoginPage() {
 
         return "auth/login";
     }
 
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("user") User person) {
+    public String showRegistrationPage(@ModelAttribute("user") User person) {
 
         return "auth/registration";
     }
