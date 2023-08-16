@@ -14,17 +14,17 @@ public class UserDetailsImp implements UserDetails {
         this.person = person;
     }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        // TODO: return roles(or authorities) on the user ROLE_ADMIN or ROLE_USER
-//        return (Collection<? extends GrantedAuthority>) this.person.getRole();
-//    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return this.person.getRole();
+        // TODO: return roles(or authorities) on the user ROLE_ADMIN or ROLE_USER
+        return (Collection<? extends GrantedAuthority>) this.person.getRole();
     }
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//
+//        return this.person.getRole();
+//    }
 
     @Override
     public String getPassword() {

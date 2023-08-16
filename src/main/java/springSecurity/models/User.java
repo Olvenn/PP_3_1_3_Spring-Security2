@@ -25,10 +25,7 @@ import javax.validation.constraints.Size;
 //import jakarta.validation.constraints.NotEmpty;
 //import jakarta.validation.constraints.Size;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -56,13 +53,33 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Fetch(FetchMode.JOIN)
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
 
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @Fetch(FetchMode.JOIN)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_role",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Collection<Role> roles;
+
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "user_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Collection<Role> roles;
+//
+//
+//    @CollectionTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")})
+//
+//    @ElementCollection(fetch = FetchType.EAGER)
+//
+//    @Enumerated(EnumType.STRING)
+//
+//    private Set<Role> roles = new HashSet<>();
 
     @Size(min = 2, message = "Password should min 2 characters")
     @Column(name = "password")
@@ -78,15 +95,15 @@ public class User {
         this.email = email;
     }
 
-    public String getAllRoles() {
-        String res = "";
-        List<Role> allRoles = getRole();
-        for(Role role: allRoles) {
-            res = res.concat(role.getName()
-                    .concat(" "));
-        }
-        return res;
-      }
+//    public String getAllRoles() {
+//        String res = "";
+//        List<Role> allRoles = getRole();
+//        for(Role role: allRoles) {
+//            res = res.concat(role.getName()
+//                    .concat(" "));
+//        }
+//        return res;
+//      }
 
     public long getId() {
         return id;
@@ -128,11 +145,11 @@ public class User {
         this.email = email;
     }
 
-    public List<Role> getRole() {
+    public Set<Role> getRole() {
         return roles;
     }
 
-    public void setRole(List<Role> roles) {
+    public void setRole(Set<Role> roles) {
 
         this.roles = roles;
     }

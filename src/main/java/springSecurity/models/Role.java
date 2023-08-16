@@ -4,6 +4,7 @@ package springSecurity.models;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,8 +19,8 @@ public class Role  implements GrantedAuthority {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private List<User> users;
+    @ManyToMany(mappedBy = "roles")
+    private Collection<User> users;
 
     public Role() {
     }
@@ -29,7 +30,7 @@ public class Role  implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return name;
+        return getName();
     }
 
     public Long getId() {
@@ -52,11 +53,11 @@ public class Role  implements GrantedAuthority {
         this.id = id;
     }
 
-    public List<User> getUsers() {
+    public Collection<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Collection<User> users) {
         this.users = users;
     }
 

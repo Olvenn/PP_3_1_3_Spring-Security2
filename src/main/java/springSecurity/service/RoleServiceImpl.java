@@ -1,5 +1,6 @@
 package springSecurity.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import springSecurity.models.Role;
 import springSecurity.repositories.RoleRepository;
 
@@ -19,11 +20,13 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void saveRole(Role role) {
         roleRepository.save(role);
     }
 
+    @Transactional
     @Override
     public void deleteRole(Long id) {
         roleRepository.deleteById(id);
