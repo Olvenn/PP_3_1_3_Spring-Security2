@@ -28,7 +28,7 @@ public class AdminController {
         this.UsersDetailsService = usersDetailsService;
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     public String getUsers(ModelMap model) {
         model.addAttribute("users", userService.findAllUsers());
         System.out.println(userService.findAllUsers());
@@ -71,7 +71,7 @@ public class AdminController {
         return "redirect:/";
     }
 
-    @GetMapping("/admin")
+    @GetMapping()
     public String adminPage() {
         return "auth/admin";
     }

@@ -20,6 +20,22 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
+
+        if (roles.contains("ROLE_USER")) {
+            System.out.println("roles1 " + roles);
+            httpServletResponse.sendRedirect("/user");
+//        } else if (roles.contains("ROLE_USER")) {
+//            httpServletResponse.sendRedirect("/user");
+        } else {
+            System.out.println("roles2 " + roles);
+            System.out.println("roles1 " + roles instanceof String);
+//            httpServletResponse.sendRedirect("/auth/registration");
+            httpServletResponse.sendRedirect("/admin");
+        }
+    }
+}
+
+
 //        System.out.println("roles " + roles);
 //        for (String role : roles) {
 //            System.out.println("role" + role);
@@ -41,15 +57,3 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
 ////            httpServletResponse.sendRedirect("/auth/registration");
 //            httpServletResponse.sendRedirect("/user");
 //        }
-
-        if (roles.contains("ROLE_ADMIN")) {
-            System.out.println("roles " + roles);
-            httpServletResponse.sendRedirect("/admin");
-//        } else if (roles.contains("ROLE_USER")) {
-//            httpServletResponse.sendRedirect("/user");
-        } else {
-//            httpServletResponse.sendRedirect("/auth/registration");
-            httpServletResponse.sendRedirect("/user");
-        }
-    }
-}
