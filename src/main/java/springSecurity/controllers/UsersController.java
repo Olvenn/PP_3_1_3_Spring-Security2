@@ -1,6 +1,5 @@
 package springSecurity.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +24,6 @@ public class UsersController {
     public String showUser(Model model, Principal principal) {
         model.addAttribute("user",
                 userService.findByUsername(principal.getName()));
-        System.out.println(principal.getName());
         return "users/user";
     }
 }

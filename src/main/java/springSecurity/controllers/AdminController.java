@@ -31,13 +31,11 @@ public class AdminController {
     @GetMapping("/all")
     public String getUsers(ModelMap model) {
         model.addAttribute("users", userService.findAllUsers());
-        System.out.println(userService.findAllUsers());
         return "users/users";
     }
 
     @GetMapping("/{id}")
     public String showUser(@PathVariable("id") long id, ModelMap model) {
-        System.out.println(id);
         model.addAttribute("user", userService.findOneUser(id));
         return "users/user";
     }

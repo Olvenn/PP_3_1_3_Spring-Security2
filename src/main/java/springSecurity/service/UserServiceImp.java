@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import springSecurity.models.User;
 import springSecurity.repositories.UserRepository;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -39,13 +38,15 @@ public class UserServiceImp implements UserService {
     public User findOneUser(long id) {
 
         Optional<User> foundPerson = userRepository.findById(id);
+        System.out.println("findOneUser " + foundPerson.get().getPassword());
         return foundPerson.orElse(null);
     }
 
     @Transactional
     @Override
     public void updateUser(long id, User user) {
-
+        System.out.println("updateUser " + findOneUser(id).getPassword());
+        user.setPassword(findOneUser(id).getPassword());
         user.setId(id);
         userRepository.save(user);
     }
