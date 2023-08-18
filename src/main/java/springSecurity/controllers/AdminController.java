@@ -60,13 +60,13 @@ public class AdminController {
             return "users/editUser";
 
         userService.updateUser(id, user);
-        return "redirect:/";
+        return "redirect:/user";
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
-        return "redirect:/";
+        return "redirect:/user";
     }
 
     @GetMapping()
