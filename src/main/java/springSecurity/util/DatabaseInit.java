@@ -9,7 +9,6 @@ import springSecurity.service.UserServiceImp;
 
 import javax.annotation.PostConstruct;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Component
@@ -32,8 +31,8 @@ public class DatabaseInit {
         String admin1Password = passwordEncoder.encode("admin1");
 
 
-        User user = new User(1,"user1", "user1", "user1", "user@gmail.com", Set.of(roleUser), user1Password);
-        User admin = new User(2, "admin1", "admin1", "admin1",  "admin@gmail.com", Set.of(roleAdmin), admin1Password);
+        User user = new User(1,"User", "User", "User", "user@gmail.com", Set.of(roleUser), user1Password);
+        User admin = new User(2, "admin", "admin", "admin",  "admin@gmail.com", Set.of(roleAdmin), admin1Password);
 
         user.setRole(Set.of(roleUser));
         admin.setRole(Set.of(roleAdmin));
