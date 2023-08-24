@@ -47,11 +47,14 @@ public class User {
     public User() {
     }
 
-    public User(String name, String surname, String username, String email) {
+    public User(long id, String name, String surname, String username, String email, Set<Role> roles, String password) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.email = email;
+        this.roles = roles;
+        this.password = password;
     }
 
     public long getId() {

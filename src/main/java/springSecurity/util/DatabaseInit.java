@@ -26,21 +26,22 @@ public class DatabaseInit {
 
     @PostConstruct
     public void postConstruct() {
-//        Role roleUser = new Role("ROLE_USER");
-//        Role roleAdmin = new Role("ROLE_ADMIN");
-//        String user1Password = passwordEncoder.encode("user1");
-//        String admin1Password = passwordEncoder.encode("admin1");
-//
-//        User user = new User("user1", "user1", "user1", "user@gmail.com", user1Password);
-//        User admin = new User("admin1", "admin1", "admin1",  "admin@gmail.com", admin1Password);
-//
-//        user.setRole(Set.of(roleUser));
-//        admin.setRole(Set.of(roleAdmin));
-//
-//        roleService.saveRole(roleUser);
-//        roleService.saveRole(roleAdmin);
-//
-//        userService.saveUser(user);
-//        userService.saveUser(admin);
+        Role roleUser = new Role("ROLE_USER");
+        Role roleAdmin = new Role("ROLE_ADMIN");
+        String user1Password = passwordEncoder.encode("user1");
+        String admin1Password = passwordEncoder.encode("admin1");
+
+
+        User user = new User(1,"user1", "user1", "user1", "user@gmail.com", Set.of(roleUser), user1Password);
+        User admin = new User(2, "admin1", "admin1", "admin1",  "admin@gmail.com", Set.of(roleAdmin), admin1Password);
+
+        user.setRole(Set.of(roleUser));
+        admin.setRole(Set.of(roleAdmin));
+
+        roleService.saveRole(roleUser);
+        roleService.saveRole(roleAdmin);
+
+        userService.saveUser(user);
+        userService.saveUser(admin);
     }
 }
