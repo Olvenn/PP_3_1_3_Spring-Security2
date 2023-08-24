@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import springSecurity.models.User;
+import springSecurity.service.RoleServiceImpl;
 import springSecurity.service.UserServiceImp;
 import springSecurity.util.UserValidator;
 
@@ -15,17 +16,21 @@ import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin")
+
 public class AdminController {
     private UserServiceImp userService;
     private final UserValidator userValidator;
     private final UserValidator UsersDetailsService;
+    private final RoleServiceImpl roleService;
+
 
     @Autowired
-    public AdminController(UserServiceImp userService, UserValidator userValidator, UserValidator usersDetailsService) {
+    public AdminController(UserServiceImp userService, UserValidator userValidator, UserValidator usersDetailsService, RoleServiceImpl roleService) {
 
         this.userService = userService;
         this.userValidator = userValidator;
         this.UsersDetailsService = usersDetailsService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/all")
@@ -48,7 +53,8 @@ public class AdminController {
     }
 
     @GetMapping("/{id}/edit")
-    public String showUpdateUserForm(Model model, @PathVariable("id") long id) {
+    public String showUpdateUserForm(Model model, Principal principal, @PathVariable("id") long id) {
+        model.addAttribute("user", userService.findByUsername(principal.getName()));
         model.addAttribute("user", userService.findOneUser(id));
         return "users/editUser";
     }
@@ -70,7 +76,10 @@ public class AdminController {
     }
 
     @GetMapping()
-    public String showAdminPage() {
+    public String adminPage(ModelMap model, Principal principal) {
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("admin", userService.findByUsername(principal.getName()));
+        model.addAttribute("roles", roleService.getRoles());
         return "auth/admin";
     }
 }
