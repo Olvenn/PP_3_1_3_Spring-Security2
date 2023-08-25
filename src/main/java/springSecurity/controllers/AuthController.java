@@ -60,6 +60,6 @@ public class AuthController {
 
         registrationService.register(user);
 
-        return "redirect:/auth/login";
+        return "redirect:/admin";
     }
 }

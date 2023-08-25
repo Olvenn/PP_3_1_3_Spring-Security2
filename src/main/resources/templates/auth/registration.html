@@ -8,6 +8,9 @@
     <title>Registration</title>
 </head>
 <style>
+    a {
+        text-decoration: none;
+    }
     .wrapper {
         height: 100vh;
     }
@@ -76,7 +79,7 @@
                         with roles:
                     </li>
                     <li class="nav-item text-white item" th:each="role : ${admin.getRole()}">
-                        <div th:text="*{role.getName()}">
+                        <div th:text="*{role.getName().replace('ROLE_', ' ')}">
                             Role
                         </div>
                     </li>
@@ -90,7 +93,7 @@
     <div class="items container-fluid align-items-stretch height">
         <div class="row">
             <div class="col-2 px-0">
-                <div class="d-flex flex-column flex-shrink-0 bg-light p-0" style="">
+                <div class="d-flex flex-column flex-shrink-0 bg-light p-0">
                     <ul class="nav nav-pills flex-column mb-auto  p-0">
                         <li class="nav-item p-0">
                             <a th:href="@{/admin}" class="nav-link active"
@@ -99,7 +102,7 @@
                             </a>
                         </li>
                         <li class="nav-item  p-0">
-                            <a href="#" class="nav-link link-dark">
+                            <a th:href="@{/user}" class="nav-link link-dark">
                                 User
                             </a>
                         </li>
@@ -115,7 +118,7 @@
                             <button class="nav-link" id="newUser-tab" data-bs-toggle="tab"
                                     data-bs-target="#newUser" type="button" role="tab" aria-controls="newUser"
                                     aria-selected="true">
-                                Users Table
+                                <a href="/admin">Users Table</a>
                             </button>
                         </li>
                         <li class="nav-item" role="presentation" data-toggle="tab">

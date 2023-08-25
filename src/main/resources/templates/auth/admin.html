@@ -45,6 +45,10 @@
             padding-top: 0;
             margin: 0;
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -63,7 +67,7 @@
                         with roles:
                     </li>
                     <li class="nav-item text-white item" th:each="role : ${admin.getRole()}">
-                        <div th:text="*{role.getName()}">
+                        <div th:text="*{role.getName().replace('ROLE_', ' ')}">
                             Role
                         </div>
                     </li>
@@ -110,7 +114,7 @@
                             <button class="nav-link" id="newUser-tab" data-bs-toggle="tab"
                                     data-bs-target="#newUser" type="button" role="tab" aria-controls="newUser"
                                     aria-selected="true">
-                                <a class="nav-link" href="auth/registration">New User</a>
+                                <a href="auth/registration">New User</a>
                             </button>
                         </li>
                     </ul>
@@ -135,8 +139,10 @@
                                     <td class="bg-light" th:text="${userNext.getName()}">UserName</td>
                                     <td class="bg-light" th:text="${userNext.getSurname()}">UserName</td>
                                     <td class="bg-light" th:text="${userNext.getEmail()}">Email</td>
-                                    <td class="bg-light" th:each="role : ${userNext.getRole()}">
-                                        <p th:text="${role.getName()}"></p>
+                                    <td class="d-flex">
+                                        <p class="bg-light" th:each="role : ${userNext.getRole()}">
+                                            <span th:text="${role.getName().replace('ROLE_', '')}" style="margin-right: 5px"></span>
+                                        </p>
                                     </td>
                                     <td class="bg-light">
                                         <button type="submit" class="btn btn-info" data-bs-toggle="modal"
