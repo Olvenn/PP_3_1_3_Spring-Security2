@@ -37,12 +37,12 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String showLoginPage() {
         return "auth/login";
     }
 
     @GetMapping("/registration")
-    public String registrationPage(Model model) {
+    public String showRegistrationPage(Model model) {
         model.addAttribute("roleDefault", "ROLE_ADMIN");
         model.addAttribute("roles", roleService.getRoles());
         model.addAttribute("admin", userService.findByUsername("Admin"));

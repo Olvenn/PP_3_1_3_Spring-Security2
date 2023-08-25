@@ -76,7 +76,7 @@ public class AdminController {
     }
 
     @GetMapping()
-    public String adminPage(ModelMap model, Principal principal) {
+    public String showAdminPage(ModelMap model, Principal principal) {
         model.addAttribute("users", userService.findAllUsers());
         model.addAttribute("admin", userService.findByUsername(principal.getName()));
         model.addAttribute("roles", roleService.getRoles());
